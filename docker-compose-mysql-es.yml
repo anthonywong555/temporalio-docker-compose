@@ -15,6 +15,7 @@ services:
     image: temporalio/server:${TEMPORAL_VERSION}
     ports:
       - 7233:7233
+    restart: always
     volumes:
       - ./dynamicconfig:/etc/temporal/config/dynamicconfig
 
@@ -26,6 +27,7 @@ services:
       - TEMPORAL_ADDRESS=temporal:7233
       - TEMPORAL_CLI_ADDRESS=temporal:7233
     image: temporalio/admin-tools:${TEMPORAL_ADMINTOOLS_VERSION}
+    restart: always
     stdin_open: true
     tty: true
 
@@ -38,6 +40,7 @@ services:
       - TEMPORAL_CORS_ORIGINS=${TEMPORAL_CORS_ORIGINS:-http://localhost:3000}
       - TEMPORAL_CSRF_COOKIE_INSECURE=true
     image: temporalio/ui:${TEMPORAL_UI_VERSION}
+    restart: always
     ports:
       - 8080:8080
 
